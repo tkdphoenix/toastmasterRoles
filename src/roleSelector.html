@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Role Selector</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Role Selector Tool</h1>
+    <!-- create a list of available roles -->
+    <!-- create a members table with column for previous 2 weeks roles so that they don't repeat roles -->
+    <!-- create a roles table with special roles like speechathons, etc. -->
+    <!-- create a table for absentees -->
+
+    <!-- list members and ask user to mark absent members first -->
+    <p>This tool is meant to be used as a random role selector for clubs to assign members to roles for the next meeting date. If there are features that you would like to see added to this tool, <a href="mailto:joelgrissom5@gmail.com">email me your suggestions</a>. You must sign up so that your selections will be saved and you can assign roles based on your current club membership. </p>
+    <hr>
+    <h2>Available Roles</h2>
+    <ul id="availableRoles">
+      <li><input id="tm" type="checkbox" class="roles"> Toastmaster</li>
+      <li><input id="grammarian" type="checkbox" class="roles"> Grammarian</li>
+      <li><input id="timer" type="checkbox" class="roles"> Timer</li>
+      <li><input id="ahCounter" type="checkbox" class="roles"> Ah Counter</li>
+      <li><input id="jokeQuote" type="checkbox" class="roles"> Joke / Quote</li>
+      <li><input id="ttm" type="checkbox" class="roles"> Table Topics Master</li>
+      <li><input id="speaker1" type="checkbox" class="roles"> Speaker #1</li>
+      <li><input id="eval1" type="checkbox" class="roles"> Evaluator #1</li>
+      <li><input id="speaker2" type="checkbox" class="roles"> Speaker #2</li>
+      <li><input id="eval2" type="checkbox" class="roles"> Evaluator #2</li>
+      <li><input id="genEval" type="checkbox" class="roles"> General Evaluator</li>
+    </ul>
+    <div class="row">
+      <div class="col-md-1">
+        <button class="checkAll btn btn-primary">Check All</button>
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-1">
+        <button class="clearAll btn">Clear All</button>
+      </div>
+      <div class="col-md-9"></div>
+    </div>
+
+
+    <h2>Available Members</h2>
+    <p>Select the Date for the meeting: </p>
+    <!-- datepicker -->
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4"/>
+                    <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker4').datetimepicker({
+                    format: 'L'
+                });
+            });
+        </script>
+    </div>
+    <!-- END datepicker -->
+    <table class="table table-responsive table-hover">
+      <thead>
+        <tr>
+          <th>Absent</th>
+          <th>Name</th>
+          <th>Role for Previous 2 Weeks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox" class="absent"></td>
+          <td>Joel Grissom</td>
+          <td>Grammarian, Joke / Quote</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" class="absent"></td>
+          <td>Bill Stephens</td>
+          <td>Toastmaster, Evaluator #2</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>When you click 'Assign Roles', it will mark members absent who are highlighted in yellow, and attempt to assign roles to other members that they have not taken in the past two weeks.</p>
+    <div class="row">
+      <div class="col">
+        <button class="assignRoles btn btn-success">Assign Roles</button>
+      </div>
+      <div class="col"></div>
+      <div class="col">
+        <button class="resetMembers btn btn-danger">Reset All Members</button>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    $(document).ready(function(){
+      // if a checkbox is checked, add a class to make the row turn yellow
+      $('.absent').on('click', function(){
+        var box = $(this);
+        box.parent().parent().toggleClass('alert alert-warning');
+      });
+
+      // check all button will check all boxes so that
+      // roles can be assigned
+      $('.checkAll').on('click', function(){
+        $('.roles').prop('checked', true);
+      });
+
+      // clear all button will remove all check boxes
+      // so that users can start over choosing roles to fill
+      $('.clearAll').on('click', function(){
+        $('.roles').prop('checked', false);
+      });
+
+      /** when the 'assign roles' button is clicked, the
+      following occurs:
+      * absent members are marked absent
+      * roles are assigned so that members don't repeat
+          roles they have taken in the
+          past two weeks, if possible.
+      * roles are removed that were taken by someone already
+      */
+      $('.assignRoles').on('click', function(){
+
+      });
+    });
+  </script>
+</body>
+</html>
